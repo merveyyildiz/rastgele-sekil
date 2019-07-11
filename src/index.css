@@ -1,18 +1,5 @@
-.kutu {
-  width: 150px;
-  height: 150px;
-  position: relative;
-}
-.circle {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  position: relative;
-}
 .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   width: 100px;
   height: 50px;
   border-radius: 15%;
