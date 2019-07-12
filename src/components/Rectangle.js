@@ -10,6 +10,7 @@ export default class Rectangle extends Component {
     return (
       <div
         className="rectangle"
+        onClick={this.props.onRectClick}
         style={{
           left: this.state.coord_x,
           top: this.state.coord_y,

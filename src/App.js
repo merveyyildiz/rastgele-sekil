@@ -5,14 +5,32 @@ export default class App extends Component {
   state = {
     durum: 0,
     color: 0,
-    shapes: []
+    oldcolor:0,
+   shapes: []
   };
-
-  rastegelesekil = () => {
+  
+  onButtonClick = () => {
+    this.rastegelesekil()
+    };
+  onCircleButtonClick=()=> {
+    this.rastegelesekil('circle')
+    };
+     onRectButtonClick=()=> {
+    this.rastegelesekil('rectangle')
+    };
+  rastegelesekil = (shape_type = false) => {
     const coord_x = this.rastegelekordinatx();
     const coord_y = this.rastegelekordinaty();
-    const color = this.randomcolor();
-    const type = Math.random() > 0.5 ? 'circle' : 'rectangle';
+    let color;
+    let type;
+    if (shape_type) {
+      type = shape_type;
+      color = this.state.oldcolor;
+    } else {
+    type = Math.random() > 0.5 ? 'circle' : 'rectangle';
+     color = this.randomcolor();
+     this.setState ({oldcolor:color});
+    }
     const shape = {
       type: type,
       color: color,
@@ -50,6 +68,7 @@ export default class App extends Component {
             coord_x={shape.coord_x}
             coord_y={shape.coord_y}
             color={shape.color}
+            onCircleClick={this.onCircleButtonClick}
           />
         );
       } else {
@@ -59,6 +78,8 @@ export default class App extends Component {
             coord_x={shape.coord_x}
             coord_y={shape.coord_y}
             color={shape.color}
+            onRectClick={this.onRectButtonClick}
+            
           />
         );
       }
@@ -66,7 +87,7 @@ export default class App extends Component {
 
     return (
       <>
-        <button className="button" onClick={this.rastegelesekil}>
+        <button className="button" onClick={this.onButtonClick}>
           Tıklayın
         </button>
         {draw}
